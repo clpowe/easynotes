@@ -6,7 +6,7 @@
 				class="spinner-border inline-block h-8 w-8 animate-spin rounded-full border-4"
 				role="status"
 			></div>
-			<span class="visually-hidden">Loading...</span>
+			<span class="visually-hidden">Saving</span>
 		</div>
 	</button>
 </template>
