@@ -13,6 +13,10 @@
 	import BaseInput from '@/components/BaseInput.vue'
 	import AsyncButton from '@/components/AsyncButton.vue'
 	import { ref } from 'vue'
+	import { useRouter, useRoute } from 'vue-router'
+
+	const router = useRouter()
+	const route = useRoute()
 
 	const email = ref('')
 	const password = ref('')
@@ -21,7 +25,7 @@
 	const handleSubmit = async () => {
 		const res = await login(email.value, password.value)
 		if (!error.value) {
-			console.log('user logged in')
+			router.push({ name: 'Home' })
 		}
 	}
 </script>

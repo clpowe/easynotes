@@ -1,15 +1,22 @@
 <template>
-	<div v-if="error">Could not get Data</div>
+	<div v-if="error">{{ error }}</div>
+
 	<div v-if="documents">
-		<div v-for="doc in documents" :key="doc.id">
-			{{ doc.notebookName }}
-		</div>
+		<ListView :documents="documents" />
 	</div>
 </template>
 
 <script setup>
 	import getCollection from '@/composables/getCollection'
+	import ListView from '@/components/ListView.vue'
 	import { ref } from 'vue'
+	import getUser from '@/composables/getUser'
 
-	const { documents, error } = getCollection('notebooks')
+	const { user } = getUser()
+
+	const { documents, error } = getCollection('notebooks', [
+		'userId',
+		'==',
+		user.value.uid
+	])
 </script>

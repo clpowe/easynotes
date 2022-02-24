@@ -37,9 +37,9 @@ const useStorage = () => {
 		)
 	}
 
-	const deleteImage = async (file) => {
-		filePath.value = `images/${user.value.uid}/${file.name}`
-		const desertRef = fireRef(projectStorage, filePath.value)
+	const deleteImage = async (_filePath) => {
+		// filePath.value = `images/${user.value.uid}/${file.name}`
+		const desertRef = fireRef(projectStorage, _filePath)
 		deleteObject(desertRef)
 			.then(() => {
 				progress.value = 0

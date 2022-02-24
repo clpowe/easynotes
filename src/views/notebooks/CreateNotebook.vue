@@ -37,6 +37,9 @@
 	import useCollection from '@/composables/useCollection'
 	import getUser from '@/composables/getUser'
 	import { timestamp } from '@/firebase/config'
+	import { useRouter, useRoute } from 'vue-router'
+
+	const router = useRouter()
 
 	const { filePath, url, uploadImage, progress, deleteImage } = useStorage()
 	const { error, _addDoc } = useCollection('notebooks')
@@ -51,7 +54,7 @@
 	const handleSubmit = async () => {
 		if (file.value) {
 			isPending.value = true
-			await _addDoc({
+			const res = await _addDoc({
 				userId: user.value.uid,
 				notebookName: notebookName.value,
 				description: description.value,
@@ -63,7 +66,7 @@
 			})
 			isPending.value = false
 			if (!error.value) {
-				console.log('Notebook Added')
+				router.push({ name: 'Notebook', params: { id: res.id } })
 			}
 		}
 	}
@@ -78,7 +81,7 @@
 			await uploadImage(file.value)
 			fileError.value = null
 		} else {
-			deleteImage(file.value)
+			deleteImage(filePath.value)
 			file.value = null
 			fileError.value = 'Please select an image file (png of jpg)'
 		}

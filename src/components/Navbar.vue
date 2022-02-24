@@ -4,11 +4,14 @@
 			<h1>
 				<router-link :to="{ name: 'Home' }">Easy Notes</router-link>
 			</h1>
-			<div class="ml-auto flex space-x-2">
-				<div v-if="user">
+			<div class="ml-auto flex">
+				<div v-if="user" class="space-x-2">
+					<router-link :to="{ name: 'CreateNotebook' }"
+						>New Notebook</router-link
+					>
 					<button @click="handleSubmit">Logout</button>
 				</div>
-				<div v-else>
+				<div v-else class="space-x-2">
 					<router-link :to="{ name: 'Signup' }" v-if="user === null"
 						>Signup</router-link
 					>
