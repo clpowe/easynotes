@@ -10,12 +10,15 @@ const getDocument = (_collection, id) => {
 
 	const unsub = onSnapshot(
 		documentRef,
+		{ includeMetadataChanges: true },
 		(snap) => {
 			if (snap.data) {
+				const source = snap.metadata.hasPendingWrites ? 'Local' : 'Server'
+
 				document.value = { ...snap.data(), id: snap.id }
 				error.value = null
 			} else {
-				error.value = 'that document does not exisr'
+				error.value = 'that document does not exist'
 			}
 		},
 		(err) => {

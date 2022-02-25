@@ -6,6 +6,21 @@ const useDocument = (_collection) => {
 	const error = ref(null)
 	const isPending = ref(false)
 
+	const _updateDoc = async (id, update) => {
+		isPending.value = true
+		try {
+			await updateDoc(doc(db, _collection, id), {
+				title: update.title,
+				content: update.content
+			})
+			isPending.value = false
+		} catch (err) {
+			console.log(err.message)
+			error.value = err.message
+			isPending.value = false
+		}
+	}
+
 	const _deleteDoc = async (id) => {
 		isPending.value = true
 		try {
@@ -18,7 +33,7 @@ const useDocument = (_collection) => {
 		}
 	}
 
-	return { error, isPending, _deleteDoc }
+	return { error, isPending, _deleteDoc, _updateDoc }
 }
 
 export default useDocument
