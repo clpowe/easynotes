@@ -3,7 +3,6 @@ import Login from './views/auth/Login.vue'
 import Signup from './views/auth/Signup.vue'
 import CreateNotebook from './views/notebooks/CreateNotebook.vue'
 import Notebook from './views/notebooks/Notebook.vue'
-import CreateNote from './views/CreateNote.vue'
 
 import { projectAuth } from './firebase/config'
 
@@ -31,13 +30,6 @@ export const routes = [
 		name: 'Signup',
 		component: Signup,
 		meta: { title: 'Signup' }
-	},
-	{
-		path: '/create',
-		name: 'CreateNote',
-		component: CreateNote,
-		meta: { title: 'Create Note' },
-		props: true
 	},
 	{
 		path: '/notebooks/create',
