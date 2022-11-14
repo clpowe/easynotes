@@ -7,7 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@vueuse/core": "^7.6.2",
+    "@vueuse/core": "^9.5.0",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.7",
     "vue": "^3.2.31",
